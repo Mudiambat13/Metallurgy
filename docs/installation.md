@@ -5,7 +5,8 @@
 
 ## Requirements
 
-- Python (the supported versions will be listed in `pyproject.toml` and tested in CI)
+- MetallurgyPy `0.2.0.dev0` (current development version; not yet published on PyPI)
+- Python 3.10 or later; CI tests Python 3.10, 3.11, 3.12 and 3.13
 - Windows or Linux for Studio; macOS compatibility is kept possible
 
 ## Install options

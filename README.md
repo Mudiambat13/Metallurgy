@@ -4,7 +4,7 @@
 
 Open-source scientific library for metallurgical process calculations (**MetallurgyPy Core**) and a desktop application for visualization and reporting (**MetallurgyPy Studio**).
 
-> **Status: development release (0.2.0.dev0).** Core, 21 process models, uncertainty propagation, data import, scenario comparison, HTML/PDF reports, projects and Studio are implemented and tested. The models are simplified and **not validated against experimental or plant data**, and Studio has not been run on a real display by the author of the code (see the [scientific audit](https://mudiambat13.github.io/MetallurgyPy/project/scientific_audit/)). Nothing is published on PyPI yet; see [installation](docs/installation.md) for the current install options.
+> **Status: development release (MetallurgyPy 0.2.0.dev0; Python 3.10+).** CI tests Python 3.10 to 3.13. Core, 21 process models, uncertainty propagation, data import, scenario comparison, HTML/PDF reports, projects and Studio are implemented and tested. The models are simplified and **not validated against experimental or plant data**, and Studio has not been run on a real display by the author of the code (see the [scientific audit](https://mudiambat13.github.io/MetallurgyPy/project/scientific_audit/)). Nothing is published on PyPI yet; see [installation](docs/installation.md) for the current install options.
 
 📖 **Documentation:** https://mudiambat13.github.io/MetallurgyPy/
 
