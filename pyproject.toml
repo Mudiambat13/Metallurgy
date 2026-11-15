@@ -30,7 +30,8 @@ visualization = ["matplotlib>=3.7"]
 uncertainty = []
 # Reading .xlsx files in metallurgypy.data_io (CSV and JSON need nothing).
 excel = ["openpyxl>=3.1"]
-gui = ["PySide6>=6.5", "pyqtgraph>=0.13", "matplotlib>=3.7"]
+# PySide6 6.12 crashes during process shutdown after GUI use on Linux and Windows.
+gui = ["PySide6>=6.5,<6.12", "pyqtgraph>=0.13", "matplotlib>=3.7"]
 dev = ["pytest>=8", "mypy>=1.8", "ruff>=0.4", "matplotlib>=3.7", "openpyxl>=3.1", "build", "twine"]
 docs = ["mkdocs>=1.6,<2", "mkdocs-material>=9.5"]
 all = ["metallurgypy[gui,visualization,excel,uncertainty]"]
