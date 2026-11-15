@@ -136,10 +136,19 @@ def render_page(title: str, module_name: str) -> str:
         if inspect.isclass(obj):
             lines += [f"## `{name}`", "", "```python", f"class {_signature(obj, name)}", "```", ""]
             doc = _clean_doc(obj.__doc__)
-            if doc and not doc.startswith(f"{name}("):  # skip the auto-generated dataclass docstring
+            if doc and not doc.startswith(
+                f"{name}("
+            ):  # skip the auto-generated dataclass docstring
                 lines += [doc, ""]
             for member, target in _members(obj):
-                lines += [f"### `{name}.{member}`", "", "```python", _signature(target, member), "```", ""]
+                lines += [
+                    f"### `{name}.{member}`",
+                    "",
+                    "```python",
+                    _signature(target, member),
+                    "```",
+                    "",
+                ]
                 lines += [_clean_doc(getattr(target, "__doc__", None)), ""]
         elif inspect.isfunction(obj):
             lines += [f"## `{name}`", "", "```python", _signature(obj, name), "```", ""]

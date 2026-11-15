@@ -85,7 +85,9 @@ def test_verify_detects_a_tampered_value(tmp_path, result):
 
 
 def test_two_product_record_round_trip(tmp_path):
-    res = TwoProductBalance(1000, Quantity(2, "%"), Quantity(20, "%"), Quantity(0.4, "%")).calculate()
+    res = TwoProductBalance(
+        1000, Quantity(2, "%"), Quantity(20, "%"), Quantity(0.4, "%")
+    ).calculate()
     assert verify(load_record(save_record(tmp_path / "t.mpy.json", res))) == []
 
 
@@ -106,7 +108,10 @@ def test_save_refuses_to_overwrite_unless_asked(tmp_path, result):
         (json.dumps({"format": "other"}), "not a MetallurgyPy"),
         (json.dumps({"format": FORMAT_NAME, "format_version": 99}), "newer"),
         (json.dumps({"format": FORMAT_NAME, "format_version": 0}), "positive integer"),
-        (json.dumps({"format": FORMAT_NAME, "format_version": 1, "model_id": "", "result": {}}), "model_id"),
+        (
+            json.dumps({"format": FORMAT_NAME, "format_version": 1, "model_id": "", "result": {}}),
+            "model_id",
+        ),
         (
             json.dumps(
                 {

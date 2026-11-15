@@ -133,7 +133,7 @@ Whether this path is a junction.
 ### `Path.open`
 
 ```python
-open(self, mode='r', buffering=-1, encoding=None, errors=None, newline=None)
+open(self, mode="r", buffering=-1, encoding=None, errors=None, newline=None)
 ```
 
 Open the file pointed to by this path and return a file object, as

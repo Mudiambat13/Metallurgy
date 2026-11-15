@@ -38,7 +38,9 @@ def format_sig(value: float, digits: int) -> str:
     return f"{rounded:.{decimals}f}"
 
 
-def format_with_uncertainty(value: float, standard_uncertainty: float, uncertainty_digits: int = 2) -> str:
+def format_with_uncertainty(
+    value: float, standard_uncertainty: float, uncertainty_digits: int = 2
+) -> str:
     """GUM-style concise notation, e.g. ``23.00(12)`` for 23.0012 with u = 0.1234.
 
     The uncertainty is rounded to ``uncertainty_digits`` (1 or 2) significant figures and the

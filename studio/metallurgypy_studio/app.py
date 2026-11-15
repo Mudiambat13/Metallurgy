@@ -20,14 +20,14 @@ from PySide6.QtWidgets import (
 from metallurgypy_studio import APP_NAME, DOCS_URL, __version__
 from metallurgypy_studio.services.calculation_service import CalculationService
 from metallurgypy_studio.services.workflow_service import DataService, ProjectService
-from metallurgypy_studio.viewmodels.workflow_viewmodels import ImportViewModel, ProjectViewModel
-from metallurgypy_studio.views.workflow.import_view import ImportView
-from metallurgypy_studio.views.workflow.project_view import ProjectView
 from metallurgypy_studio.viewmodels.app_state import AppSettings, AppState
+from metallurgypy_studio.viewmodels.workflow_viewmodels import ImportViewModel, ProjectViewModel
 from metallurgypy_studio.viewmodels.workspace_viewmodel import WorkspaceViewModel
 from metallurgypy_studio.views.dashboard.dashboard_view import DashboardView
 from metallurgypy_studio.views.modules.modules_view import ModulesView
 from metallurgypy_studio.views.settings.settings_view import SettingsView
+from metallurgypy_studio.views.workflow.import_view import ImportView
+from metallurgypy_studio.views.workflow.project_view import ProjectView
 from metallurgypy_studio.views.workspace.workspace_view import WorkspaceView
 
 STYLES = Path(__file__).parent / "resources" / "styles"
@@ -47,7 +47,9 @@ def apply_theme(app: QApplication, theme: str) -> None:
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, app: QApplication, settings: AppSettings, config_file: Path | None = None) -> None:
+    def __init__(
+        self, app: QApplication, settings: AppSettings, config_file: Path | None = None
+    ) -> None:
         super().__init__()
         self._app = app
         self._config_file = config_file
@@ -84,7 +86,12 @@ class MainWindow(QMainWindow):
         self.settings_view = SettingsView(settings)
         self.stack = QStackedWidget()
         for page in (
-            self.dashboard, self.modules, self.workspace, self.import_view, self.project_view, self.settings_view
+            self.dashboard,
+            self.modules,
+            self.workspace,
+            self.import_view,
+            self.project_view,
+            self.settings_view,
         ):
             self.stack.addWidget(page)
 

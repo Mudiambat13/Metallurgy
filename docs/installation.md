@@ -7,6 +7,7 @@
 
 - MetallurgyPy `0.2.0.dev0` (current development version; not yet published on PyPI)
 - Python 3.10 or later; CI tests Python 3.10, 3.11, 3.12 and 3.13
+- Studio currently uses PySide6 6.5 to below 6.12; PySide6 6.12 can crash on process shutdown
 - Windows or Linux for Studio; macOS compatibility is kept possible
 
 ## Install options
