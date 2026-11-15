@@ -4,6 +4,8 @@ They are skipped automatically when the GUI extra is not installed, so the Core
 test job never depends on Qt.
 """
 
+import atexit
+import gc
 import os
 
 import pytest
@@ -12,6 +14,8 @@ pytest.importorskip("PySide6")
 pytest.importorskip("pyqtgraph")
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
+import shiboken6  # noqa: E402
+from PySide6.QtCore import QCoreApplication, QEvent  # noqa: E402
 from PySide6.QtWidgets import QApplication  # noqa: E402
 
 from metallurgypy_studio.app import MainWindow  # noqa: E402
@@ -21,9 +25,23 @@ from metallurgypy_studio.viewmodels.app_state import AppSettings  # noqa: E402
 pytestmark = pytest.mark.gui
 
 
+def _cleanup_qt() -> None:
+    app = QApplication.instance()
+    if app is None:
+        return
+    for window in QApplication.topLevelWidgets():
+        window.deleteLater()
+    QCoreApplication.sendPostedEvents(None, QEvent.Type.DeferredDelete)
+    app.processEvents()
+    shiboken6.delete(app)
+    gc.collect()
+
+
 @pytest.fixture(scope="module")
 def qapp():
-    return QApplication.instance() or QApplication([])
+    app = QApplication.instance() or QApplication([])
+    atexit.register(_cleanup_qt)
+    return app
 
 
 @pytest.fixture
@@ -33,7 +51,7 @@ def window(qapp):
     win.close()
 
 
-def test_entry_point_builds_the_window():
+def test_entry_point_builds_the_window(qapp):
     assert main(["--check"]) == 0
 
 
