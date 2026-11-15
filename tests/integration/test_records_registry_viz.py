@@ -63,9 +63,9 @@ def test_spec_run_reports_missing_and_unknown_inputs():
 
 
 def test_save_and_reopen_keeps_exact_values_and_reproduces(tmp_path, result):
-    path = save_record(tmp_path / "calc.mpy.json", result, name="Test", notes="é – note")
+    path = save_record(tmp_path / "calc.mpy.json", result, name="Test", notes="é \u2013 note")
     record = load_record(path)
-    assert record.name == "Test" and record.notes == "é – note"
+    assert record.name == "Test" and record.notes == "é \u2013 note"
     assert record.model_id == "mass_balance.recovery"
     assert record.inputs == dict(result.provenance.inputs)
     for stored, item in zip(record.result["outputs"], result.outputs(), strict=True):

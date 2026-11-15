@@ -74,7 +74,8 @@ def _cholesky(matrix: list[list[float]]) -> list[list[float]]:
             if i == j:
                 if s < -1e-12:
                     raise InvalidParameterError(
-                        "The correlation coefficients are inconsistent: the matrix is not positive semi-definite."
+                        "The correlation coefficients are inconsistent: the matrix is not positive "
+                        "semi-definite."
                     )
                 lower[i][j] = math.sqrt(max(s, 0.0))
             else:
@@ -169,7 +170,8 @@ def propagate_model(
         rel = measurements[n].relative_standard_uncertainty
         if rel is not None and rel > LINEARISATION_WARNING_LEVEL:
             warnings.append(
-                f"{n}: relative standard uncertainty {rel:.1%} is large; first-order propagation may be "
+                f"{n}: relative standard uncertainty {rel:.1%} is large; first-order propagation "
+                "may be "
                 "inaccurate. Compare with monte_carlo()."
             )
     jacobian: dict[str, dict[str, Derivative]] = {}
@@ -179,7 +181,8 @@ def propagate_model(
         jacobian[n] = derivatives_wrt(spec, nominal_inputs, n, scale=std[n])
         if any(d.scheme != "central" for d in jacobian[n].values()):
             warnings.append(
-                f"{n}: nominal value is at the edge of the model domain (one-sided derivative used)."
+                f"{n}: nominal value is at the edge of the model domain (one-sided derivative "
+                "used)."
             )
 
     outputs: dict[str, OutputUncertainty] = {}
@@ -280,7 +283,8 @@ def monte_carlo(
     kept = samples - rejected
     if kept < 2:
         raise CalculationError(
-            "Almost every Monte Carlo draw left the model domain: the inputs are too uncertain for this model."
+            "Almost every Monte Carlo draw left the model domain: the inputs are too uncertain for "
+            "this model."
         )
     outputs: dict[str, MonteCarloOutput] = {}
     for key, values in columns.items():
@@ -290,7 +294,8 @@ def monte_carlo(
     warnings = []
     if rejected:
         warnings.append(
-            f"{rejected} of {samples} draws left the model domain and were rejected: the distribution is truncated, "
+            f"{rejected} of {samples} draws left the model domain and were rejected: the "
+            "distribution is truncated, "
             "so the statistics are biased."
         )
     return MonteCarloResult(outputs, kept, rejected, seed, tuple(warnings))

@@ -34,7 +34,8 @@ class LeachingYield(BaseModel):
     ASSUMPTIONS = (
         "Single metal, same dry basis for solid masses and grades.",
         "The solid-based extraction is the reference; the solution-based amount is a cross-check.",
-        "The gap is a reconciliation difference, not a verdict: assay error, entrained or wash solution, "
+        "The gap is a reconciliation difference, not a verdict: assay error, entrained or wash "
+        "solution, "
         "precipitation and sampling all contribute. MetallurgyPy sets no acceptance threshold.",
     )
 
@@ -122,9 +123,11 @@ class LeachKinetics(BaseModel):
         "t_90 = ln(10) / k   (time to reach 90 % of X_max)",
     )
     ASSUMPTIONS = (
-        "Empirical single-rate model: it does not represent a mechanism (shrinking core, diffusion, passivation) "
+        "Empirical single-rate model: it does not represent a mechanism (shrinking core, diffusion, "
+        "passivation) "
         "and does not describe every ore or set of conditions.",
-        "X_max and k are fitted by the user for a given ore, temperature, acidity and particle size; none is supplied.",
+        "X_max and k are fitted by the user for a given ore, temperature, acidity and particle "
+        "size; none is supplied.",
         "Valid only inside the time range of the data the parameters were fitted on.",
     )
     _POINTS = 60
@@ -191,8 +194,10 @@ class Neutralization(BaseModel):
         "m_base = n_base * M / p",
     )
     ASSUMPTIONS = (
-        "Stoichiometric only: c_H is the free acidity in mol of H+ per litre; z is the number of OH- delivered per formula unit of base.",
-        "No buffering, hydrolysis of dissolved metals, precipitation or gypsum formation is modelled, so the real consumption is usually higher.",
+        "Stoichiometric only: c_H is the free acidity in mol of H+ per litre; z is the number of "
+        "OH- delivered per formula unit of base.",
+        "No buffering, hydrolysis of dissolved metals, precipitation or gypsum formation is "
+        "modelled, so the real consumption is usually higher.",
         "Base molar mass, purity and equivalents are supplied by the user.",
     )
 
@@ -234,7 +239,8 @@ class Neutralization(BaseModel):
         m_pure_kg = n_base * i["base_molar_mass"].to("g/mol").value / 1000.0
         m_commercial_kg = m_pure_kg / i["base_purity"].to("fraction").value
         warnings = [
-            "Stoichiometric minimum only: actual consumption is higher when metals hydrolyse or precipitate."
+            "Stoichiometric minimum only: actual consumption is higher when metals hydrolyse or "
+            "precipitate."
         ]
         if n_h == 0.0:
             warnings.append("Free acidity is zero: nothing to neutralize.")
@@ -263,8 +269,10 @@ class PrecipitationYield(BaseModel):
         "yield = (C0 - Cf) / C0",
     )
     ASSUMPTIONS = (
-        "The solution volume is unchanged by the precipitation reagent (no dilution); use the final volume otherwise.",
-        "The metal removed from solution reports entirely to the solid (no adsorption on other solids, no volatilisation).",
+        "The solution volume is unchanged by the precipitation reagent (no dilution); use the final "
+        "volume otherwise.",
+        "The metal removed from solution reports entirely to the solid (no adsorption on other "
+        "solids, no volatilisation).",
         "No equilibrium or solubility-product model: concentrations are measured values.",
     )
 
@@ -294,7 +302,8 @@ class PrecipitationYield(BaseModel):
         cf = i["final_concentration"].to("kg/m3").value
         if cf > c0:
             raise ModelDomainError(
-                "Final concentration is higher than the initial one: this is re-dissolution, not precipitation."
+                "Final concentration is higher than the initial one: this is re-dissolution, not "
+                "precipitation."
             )
         volume = i["solution_volume"].to("m3").value
         return self._result(

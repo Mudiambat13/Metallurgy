@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from contextlib import suppress
 from pathlib import Path
 
 from PySide6.QtCore import QStandardPaths, QUrl
@@ -137,8 +138,6 @@ class MainWindow(QMainWindow):
 
     def closeEvent(self, event) -> None:  # type: ignore[no-untyped-def]
         if self._config_file is not None:
-            try:
+            with suppress(OSError):
                 self.state.settings.save(self._config_file)
-            except OSError:
-                pass  # losing a preference must never block closing the application
         super().closeEvent(event)

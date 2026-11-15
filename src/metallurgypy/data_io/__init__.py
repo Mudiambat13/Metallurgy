@@ -171,7 +171,7 @@ def _to_float(cell: Any, decimal: str) -> float:
     else:
         if cell is None:
             raise ValueError("empty")
-        text = str(cell).strip().replace(" ", "").replace(" ", "")
+        text = str(cell).strip().replace("\u00a0", "").replace(" ", "")
         if not text:
             raise ValueError("empty")
         if decimal == ",":
@@ -183,7 +183,8 @@ def _to_float(cell: Any, decimal: str) -> float:
 
 
 def detect_column_types(table: Table, *, threshold: float = 0.8) -> dict[str, str]:
-    """``'number'`` if at least ``threshold`` of the non-empty cells parse as numbers, else ``'text'``.
+    """``'number'`` if at least ``threshold`` of the non-empty cells parse as numbers,
+    else ``'text'``.
 
     A few typos therefore do not turn a numeric column into text; the bad cells are
     reported row by row when the data is imported.

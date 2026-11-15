@@ -169,7 +169,9 @@ class WorkspaceViewModel:
         return rows
 
     def uncertainty_budget_text(self) -> str:
-        """Plain-text uncertainty budget: method, warnings, and each input's share of the variance."""
+        """Plain-text uncertainty budget: method, warnings, and each input's share of the
+        variance.
+        """
         if self.uncertain is None:
             return ""
         lines = [

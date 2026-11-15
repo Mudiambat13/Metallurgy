@@ -32,7 +32,10 @@ from metallurgypy.core.units import (
 from metallurgypy.core.validation import DEFAULT_TOLERANCES, Tolerances
 
 _SUPPORTED_MODES = (CalculationMode.STANDARD, CalculationMode.HIGH_PRECISION)
-_EXACT_METHOD = "Exact rational arithmetic (fractions.Fraction) on the float64 inputs; each output is rounded once to float64"
+_EXACT_METHOD = (
+    "Exact rational arithmetic (fractions.Fraction) on the float64 inputs; "
+    "each output is rounded once to float64"
+)
 
 
 def _mass(name: str, raw: Quantity | float) -> Quantity:
@@ -113,9 +116,11 @@ class MassBalance:
     ASSUMPTIONS = (
         "Single component, single time point, steady state.",
         "Grade is a mass fraction of the metal, on the same basis (dry or wet) as the feed mass.",
-        "Recovery is the share of contained metal reporting to the product; it is not the mass yield.",
+        "Recovery is the share of contained metal reporting to the product; it is not the mass "
+        "yield.",
         "Inputs are taken as exact: measurement uncertainty is not propagated in standard mode.",
-        "The balance is arithmetic. It does not show that the recovery is achievable in a real circuit.",
+        "The balance is arithmetic. It does not show that the recovery is achievable in a real "
+        "circuit.",
     )
 
     def __init__(
@@ -268,7 +273,8 @@ class TwoProductBalance:
         "Two products only, single component, steady state, no accumulation.",
         "Grades are mass fractions of the metal on the same basis (dry or wet) as the masses.",
         "Grades are taken as exact: analytical uncertainty is not propagated in standard mode.",
-        "Mass and metal balances are closed by construction; the residuals reported are numerical only.",
+        "Mass and metal balances are closed by construction; the residuals reported are numerical "
+        "only.",
         "Real grades carry sampling and assay error, which can make a computed yield "
         "or recovery physically meaningless even when the arithmetic is valid.",
     )

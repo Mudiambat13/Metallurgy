@@ -41,7 +41,9 @@ class ColumnChoice:
 
 
 class ImportViewModel(_Observable):
-    """Pick a file, say what each column means (name + unit), validate, optionally run a model per row."""
+    """Pick a file, map each column to a name and unit, validate, and optionally run a model per
+    row.
+    """
 
     def __init__(self, data: DataService, models: list[str]) -> None:
         super().__init__()
@@ -239,7 +241,10 @@ class ProjectViewModel(_Observable):
         def go() -> str:
             if self.comparison is None:
                 raise ValueError("Run a comparison first.")
-            return f"Saved {self._service.export_comparison(path, self.comparison, overwrite=overwrite)}"
+            saved = self._service.export_comparison(
+                path, self.comparison, overwrite=overwrite
+            )
+            return f"Saved {saved}"
 
         return self._guard(go)
 
@@ -257,7 +262,10 @@ class ProjectViewModel(_Observable):
                 raise ValueError("Open a project first.")
             if not entry_ids:
                 raise ValueError("Select at least one calculation for the report.")
-            return f"Saved {self._service.export_report(self.project, entry_ids, path, fmt=fmt, author=author, overwrite=overwrite)}"
+            saved = self._service.export_report(
+                self.project, entry_ids, path, fmt=fmt, author=author, overwrite=overwrite
+            )
+            return f"Saved {saved}"
 
         return self._guard(go)
 

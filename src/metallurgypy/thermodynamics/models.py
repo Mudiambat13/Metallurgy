@@ -33,9 +33,11 @@ class GibbsReaction(BaseModel):
         "log10 K = ln K / ln 10",
     )
     ASSUMPTIONS = (
-        "dH and dS are constant between their reference temperature and T (heat capacity change neglected): "
+        "dH and dS are constant between their reference temperature and T (heat capacity change "
+        "neglected): "
         "valid near the temperature where they were determined, increasingly wrong far from it.",
-        "K is the thermodynamic equilibrium constant (activities, standard states of the data source); "
+        "K is the thermodynamic equilibrium constant (activities, standard states of the data "
+        "source); "
         "it is not a concentration quotient.",
         "dH, dS and their reference temperature come from the user's documented source.",
         "R = N_A * k_B, exact in the 2019 SI definition.",
@@ -87,7 +89,8 @@ class StrongAcidPH(BaseModel):
     EQUATIONS = ("[H+] = z * c", "pH = -log10([H+])")
     ASSUMPTIONS = (
         "Complete dissociation of z protons per formula unit (z supplied by the user).",
-        "Activity equals concentration: valid only in dilute solution. Concentrated acids and process liquors "
+        "Activity equals concentration: valid only in dilute solution. Concentrated acids and "
+        "process liquors "
         "have activity coefficients far from 1, and the measured pH can differ by more than one unit.",
         "Autoionization of water is neglected, so the model is refused below 1e-6 mol/L of H+.",
     )
@@ -110,12 +113,14 @@ class StrongAcidPH(BaseModel):
         h = self._inputs["concentration"].to("mol/L").value * self._inputs["protons"].value
         if h < 1e-6:
             raise ModelDomainError(
-                f"[H+] = {h:.3g} mol/L is too dilute for the strong-acid model (water autoionization matters)."
+                f"[H+] = {h:.3g} mol/L is too dilute for the strong-acid model (water "
+                "autoionization matters)."
             )
         warnings = []
         if h > 0.1:
             warnings.append(
-                "[H+] above 0.1 mol/L: activity coefficients are no longer close to 1; the pH is indicative only."
+                "[H+] above 0.1 mol/L: activity coefficients are no longer close to 1; the pH is "
+                "indicative only."
             )
         return self._result(
             [
@@ -138,7 +143,8 @@ class WeakAcidPH(BaseModel):
     )
     ASSUMPTIONS = (
         "Single monoprotic acid, no other acid, base or complexing species in solution.",
-        "Activity equals concentration (ideal solution); Ka and Kw apply at the solution temperature.",
+        "Activity equals concentration (ideal solution); Ka and Kw apply at the solution "
+        "temperature.",
         "pKa and pKw come from the user's documented source; pKw depends on temperature.",
         "Solved on [H+] with bisection; the bracket and convergence are recorded in the result.",
     )

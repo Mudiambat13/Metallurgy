@@ -131,7 +131,8 @@ class Project:
             raise ProjectError("'format_version' must be a positive integer.")
         if version > PROJECT_VERSION:
             raise ProjectError(
-                f"Project format version {version} is newer than this release understands ({PROJECT_VERSION})."
+                f"Project format version {version} is newer than this release understands "
+                f"({PROJECT_VERSION})."
             )
         if not isinstance(meta.get("calculations"), list) or not isinstance(meta.get("name"), str):
             raise ProjectError("project.json is missing 'name' or 'calculations'.")
@@ -278,7 +279,9 @@ class Project:
         _write_text(self.root / _INDEX, text, overwrite=True)
 
     def export_archive(self, archive: str | os.PathLike[str], *, overwrite: bool = False) -> Path:
-        """Zip ``project.json``, the history and every listed calculation (fixed, relative names)."""
+        """Zip ``project.json``, the history and every listed calculation (fixed, relative
+        names).
+        """
         target = Path(archive)
         if target.exists() and not overwrite:
             raise FileExistsError(f"{target} already exists; refusing to overwrite it.")

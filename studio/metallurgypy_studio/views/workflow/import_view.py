@@ -1,4 +1,6 @@
-"""Data Import: choose a file, map columns to named values with units, validate, run a model per row."""
+"""Data Import: choose a file, map columns to named values with units, validate, and run a model
+per row.
+"""
 
 from __future__ import annotations
 
@@ -28,7 +30,7 @@ class ImportView(QWidget):
         title = QLabel("Data Import")
         title.setObjectName("Heading")
         hint = QLabel(
-            "Choose a CSV, JSON or Excel file, say what each column is (name and unit), then validate. "
+            "Choose a CSV, JSON or Excel file, map each column to a name and unit, then validate. "
             "Rows that cannot be used are listed with the reason; your file is never modified."
         )
         hint.setObjectName("Hint")

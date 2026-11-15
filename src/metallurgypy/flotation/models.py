@@ -36,8 +36,10 @@ class FlotationKinetics(BaseModel):
         "t_95 = ln(20) / k   (time to reach 95 % of R_inf)",
     )
     ASSUMPTIONS = (
-        "A single rate constant k describes the whole feed (one floatability class). Real ores usually need several.",
-        "R_inf and k are empirical, valid for the ore, reagents and cell conditions where they were fitted; MetallurgyPy supplies none.",
+        "A single rate constant k describes the whole feed (one floatability class). Real ores "
+        "usually need several.",
+        "R_inf and k are empirical, valid for the ore, reagents and cell conditions where they were "
+        "fitted; MetallurgyPy supplies none.",
         "Time is flotation (residence) time in the cell, with no scale-up factor applied.",
     )
     _POINTS = 60
@@ -88,7 +90,8 @@ class FlotationKinetics(BaseModel):
         warnings = []
         if k * t < 0.05:
             warnings.append(
-                "k * t is very small: the recovery is still in the initial linear part of the curve."
+                "k * t is very small: the recovery is still in the initial linear part of the "
+                "curve."
             )
         return self._result(
             [

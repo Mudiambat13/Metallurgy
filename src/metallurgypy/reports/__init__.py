@@ -41,7 +41,8 @@ __all__ = [
 
 DISCLAIMER = (
     "These results come from simplified models documented in MetallurgyPy. They are not a validated "
-    "industrial simulation. Check the assumptions and the domain of validity before using them for an "
+    "industrial simulation. Check the assumptions and the domain of validity before using them for "
+    "an "
     "engineering decision."
 )
 
@@ -114,7 +115,8 @@ def build_report(
             Block(
                 "p",
                 f"Model {p.model_id} (version {p.model_version}); mode {p.calculation_mode}; "
-                f"convergence: {p.convergence}; calculated {p.timestamp} with MetallurgyPy {p.software_version}.",
+                f"convergence: {p.convergence}; calculated {p.timestamp} with MetallurgyPy "
+                f"{p.software_version}.",
             )
         )
         if entry.notes.strip():
@@ -177,8 +179,10 @@ def build_report(
 
 
 _CSS = (
-    "body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;color:#222}"
-    "table{border-collapse:collapse;margin:.5rem 0 1rem}th,td{border:1px solid #bbb;padding:.3rem .6rem;"
+    "body{font-family:system-ui,sans-serif;max-width:900px;margin:2rem auto;padding:0 1rem;"
+    "color:#222}"
+    "table{border-collapse:collapse;margin:.5rem 0 1rem}th,td{border:1px solid #bbb;"
+    "padding:.3rem .6rem;"
     "text-align:left}th{background:#eef2f6}.note{border-left:4px solid #b8860b;background:#fff8e1;"
     "padding:.6rem 1rem}caption{text-align:left;font-weight:600;padding:.3rem 0}"
 )
@@ -192,7 +196,8 @@ def render_html(document: ReportDocument) -> str:
         '<html lang="en"><head><meta charset="utf-8">',
         f"<title>{e(document.title)}</title><style>{_CSS}</style></head><body>",
         f"<h1>{e(document.title)}</h1>",
-        f"<p>{e(document.author) + ' · ' if document.author else ''}Generated {e(document.generated)} "
+        f"<p>{e(document.author) + ' · ' if document.author else ''}"
+        f"Generated {e(document.generated)} "
         f"with MetallurgyPy {e(__version__)}</p>",
     ]
     for b in document.blocks:

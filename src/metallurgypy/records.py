@@ -205,7 +205,8 @@ def verify(record: CalculationRecord, tolerances: Tolerances = DEFAULT_TOLERANCE
     stored_version = record.result.get("provenance", {}).get("model_version")
     if stored_version != fresh.provenance.model_version:
         differences.append(
-            f"model version changed: saved with {stored_version}, now {fresh.provenance.model_version}"
+            f"model version changed: saved with {stored_version}, "
+            f"now {fresh.provenance.model_version}"
         )
     fresh_by_name = {o.name: o.quantity for o in fresh.outputs()}
     for item in record.result["outputs"]:

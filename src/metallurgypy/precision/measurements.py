@@ -74,7 +74,9 @@ class Measurement:
         return self.uncertainty / math.sqrt(6.0)  # triangular
 
     def expanded_uncertainty(self, k: float = 2.0) -> float:
-        """Expanded uncertainty U = k * u. ``k = 2`` is a convention (about 95 % for a normal law)."""
+        """Expanded uncertainty U = k * u. ``k = 2`` is a convention
+        (about 95 % for a normal law).
+        """
         if not math.isfinite(k) or k <= 0.0:
             raise InvalidParameterError("k must be > 0.")
         return k * self.standard_uncertainty
@@ -88,7 +90,9 @@ class Measurement:
     def from_replicates(
         cls, values: Sequence[float], unit: str, *, method: str = "Type A: mean of replicates"
     ) -> Measurement:
-        """Type A evaluation: mean of ``values`` and standard uncertainty of the mean, s / sqrt(n)."""
+        """Type A evaluation: mean of ``values`` and standard uncertainty of the mean,
+        s / sqrt(n).
+        """
         if len(values) < 2:
             raise InvalidParameterError(
                 "At least two replicates are needed for a Type A uncertainty."

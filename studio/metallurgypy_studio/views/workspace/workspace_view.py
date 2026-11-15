@@ -209,7 +209,8 @@ class WorkspaceView(QWidget):
             u_edit = QLineEdit()
             u_edit.setPlaceholderText("± u (optional)")
             u_edit.setToolTip(
-                "Standard uncertainty of this value, in the same unit. Leave blank if the value is exact."
+                "Standard uncertainty of this value, in the same unit. Leave blank if the value "
+                "is exact."
             )
             u_edit.setAccessibleName(f"{param.label} standard uncertainty")
             u_edit.setMaximumWidth(120)

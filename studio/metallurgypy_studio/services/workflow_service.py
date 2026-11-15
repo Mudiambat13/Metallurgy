@@ -1,4 +1,7 @@
-"""Use cases for data import, projects, comparison and reports. No Qt; everything is Core API calls."""
+"""Use cases for data import, projects, comparison and reports.
+
+No Qt; everything is Core API calls.
+"""
 
 from __future__ import annotations
 

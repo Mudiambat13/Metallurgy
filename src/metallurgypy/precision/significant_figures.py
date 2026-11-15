@@ -14,7 +14,9 @@ def _check(value: float) -> None:
 
 
 def round_sig(value: float, digits: int) -> float:
-    """Round to ``digits`` significant figures (half away from zero, on the exact decimal expansion)."""
+    """Round to ``digits`` significant figures (half away from zero, on the exact decimal
+    expansion).
+    """
     _check(value)
     if isinstance(digits, bool) or not isinstance(digits, int) or digits < 1:
         raise InvalidParameterError("digits must be an integer >= 1.")
@@ -44,7 +46,8 @@ def format_with_uncertainty(
     """GUM-style concise notation, e.g. ``23.00(12)`` for 23.0012 with u = 0.1234.
 
     The uncertainty is rounded to ``uncertainty_digits`` (1 or 2) significant figures and the
-    value is rounded to the same decimal place. If the uncertainty is zero, the value is shown as is.
+    value is rounded to the same decimal place. If the uncertainty is zero, the value is shown
+    as is.
     """
     _check(value)
     _check(standard_uncertainty)

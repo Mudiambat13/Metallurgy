@@ -303,7 +303,8 @@ def _run_python(code: str) -> subprocess.CompletedProcess[str]:
 def test_core_imports_without_gui_or_plotting_libraries():
     proc = _run_python(
         "import sys, metallurgypy.mass_balance, metallurgypy.records, metallurgypy.registry;"
-        "bad=[m for m in sys.modules if m.split('.')[0] in ('PySide6','matplotlib','numpy','pandas','pyqtgraph')];"
+        "bad=[m for m in sys.modules if m.split('.')[0] in "
+        "('PySide6','matplotlib','numpy','pandas','pyqtgraph')];"
         "assert not bad, bad"
     )
     assert proc.returncode == 0, proc.stderr

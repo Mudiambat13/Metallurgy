@@ -133,7 +133,8 @@ def detect_outliers(values: Sequence[float], threshold: float = 3.5) -> Outliers
     mad = _st.median([abs(v - med) for v in data])
     if mad == 0.0:
         raise CalculationError(
-            "MAD is zero (at least half the values are identical): the modified z-score is undefined."
+            "MAD is zero (at least half the values are identical): the modified z-score is "
+            "undefined."
         )
     scores = tuple(0.6745 * (v - med) / mad for v in data)
     flagged = tuple(i for i, s in enumerate(scores) if abs(s) > threshold)

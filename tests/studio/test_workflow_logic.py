@@ -26,7 +26,9 @@ def pvm(ws):
 def test_import_flow_with_rejected_rows(tmp_path):
     f = tmp_path / "d.csv"
     f.write_text(
-        "sample,mass [t],grade [%],rec [%]\nA,1000,2.5,92\nC,900,2.1,90\nD,800,2.0,91\nE,700,1.9,89\nF,600,1.7,88\nB,x,1,50\n",
+        "sample,mass [t],grade [%],rec [%]\nA,1000,2.5,92\n"
+        "C,900,2.1,90\nD,800,2.0,91\n"
+        "E,700,1.9,89\nF,600,1.7,88\nB,x,1,50\n",
         encoding="utf-8",
     )
     ivm = ImportViewModel(DataService(), ["mass_balance.recovery"])

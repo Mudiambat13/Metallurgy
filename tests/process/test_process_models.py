@@ -276,7 +276,8 @@ def test_leach_kinetics_reference():
 
 
 def test_neutralization_reference():
-    # 100 m3 * 0.1 mol/L = 10 000 mol H+ ; z=2 -> 5 000 mol ; M=56 g/mol -> 280 kg pure ; /0.9 -> 311.11 kg
+    # 100 m3 * 0.1 mol/L = 10 000 mol H+; z=2 -> 5 000 mol; M=56 g/mol -> 280 kg pure;
+    # /0.9 -> 311.11 kg
     r = Neutralization(100, Q(0.1, "mol/L"), 56, 2, Q(90, "%")).calculate()
     assert val(r, "acid_amount") == pytest.approx(10_000.0)
     assert val(r, "base_amount") == pytest.approx(5_000.0)

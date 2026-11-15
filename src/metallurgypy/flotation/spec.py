@@ -10,7 +10,9 @@ register_class(
     FlotationBalance,
     module_key="flotation",
     title="Concentrate / tailings balance",
-    description="Mass pull, metal recovery and enrichment from feed, concentrate and tailings grades.",
+    description=(
+        "Mass pull, metal recovery and enrichment from feed, concentrate and tailings grades."
+    ),
     parameters=(
         param("feed_mass", "Feed mass", "Mass of the feed (> 0).", "t"),
         param(

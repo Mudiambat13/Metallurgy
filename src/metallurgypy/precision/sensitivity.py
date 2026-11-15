@@ -22,7 +22,9 @@ class SensitivityEntry:
 def sensitivity_coefficients(
     model: str | ModelSpec, inputs: Mapping[str, Quantity]
 ) -> list[SensitivityEntry]:
-    """Local derivative and dimensionless (elasticity) sensitivity of every output to every input."""
+    """Local derivative and dimensionless (elasticity) sensitivity of every output to every
+    input.
+    """
     spec = get_model(model) if isinstance(model, str) else model
     base = outputs_of(spec.run(inputs))
     entries: list[SensitivityEntry] = []

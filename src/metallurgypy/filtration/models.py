@@ -14,7 +14,9 @@ _Q = Quantity | float
 
 
 class ConstantPressureFiltration(BaseModel):
-    """Time and rate to collect a filtrate volume through an incompressible cake at constant pressure."""
+    """Time and rate to collect a filtrate volume through an incompressible cake at constant
+    pressure.
+    """
 
     MODEL_ID = "filtration.constant_pressure_cake"
     EQUATIONS = (
@@ -26,9 +28,12 @@ class ConstantPressureFiltration(BaseModel):
         "m_cake,dry = c * V",
     )
     ASSUMPTIONS = (
-        "Constant pressure drop, incompressible cake (alpha constant), constant medium resistance R_m.",
-        "c is the dry-solids mass deposited per unit volume of filtrate (not the slurry solids concentration).",
-        "Darcy flow through the cake and medium, no settling during filtration, no cake washing or deliquoring.",
+        "Constant pressure drop, incompressible cake (alpha constant), constant medium "
+        "resistance R_m.",
+        "c is the dry-solids mass deposited per unit volume of filtrate (not the slurry solids "
+        "concentration).",
+        "Darcy flow through the cake and medium, no settling during filtration, no cake washing or "
+        "deliquoring.",
         "alpha and R_m are measured for the slurry and filter used (user inputs).",
     )
     _POINTS = 60
@@ -110,8 +115,10 @@ class CakeMoisture(BaseModel):
         "moisture (dry basis) = m_water / m_dry",
     )
     ASSUMPTIONS = (
-        "Wet mass is weighed before drying and dry mass after drying to constant mass (user measurements).",
-        "All mass lost on drying is counted as water; soluble salts and volatile species are not separated.",
+        "Wet mass is weighed before drying and dry mass after drying to constant mass (user "
+        "measurements).",
+        "All mass lost on drying is counted as water; soluble salts and volatile species are not "
+        "separated.",
         "Moisture is reported on both bases: they differ and must not be mixed up.",
     )
 

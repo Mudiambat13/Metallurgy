@@ -28,8 +28,10 @@ class Dilution(BaseModel):
     )
     ASSUMPTIONS = (
         "Volumes are additive (V_diluent = V2 - V1). Real solutions can show volume contraction "
-        "or expansion on mixing, so for strong acids or concentrated solutions prepare to the final mark.",
-        "Concentrations are mass concentrations (solute mass per solution volume) at the same temperature.",
+        "or expansion on mixing, so for strong acids or concentrated solutions prepare to the "
+        "final mark.",
+        "Concentrations are mass concentrations (solute mass per solution volume) at the same "
+        "temperature.",
         "Stock concentration and purity come from the user (label or assay).",
     )
 
@@ -127,8 +129,10 @@ class ReagentConsumption(BaseModel):
         "m_product/campaign = m_product/day * N_days",
     )
     ASSUMPTIONS = (
-        "The dosage d is the mass of ACTIVE reagent per mass of ore; the commercial product mass divides by its purity p.",
-        "Ore throughput is constant over the period; no start-up, stoppage or dosing losses are modelled.",
+        "The dosage d is the mass of ACTIVE reagent per mass of ore; the commercial product mass "
+        "divides by its purity p.",
+        "Ore throughput is constant over the period; no start-up, stoppage or dosing losses are "
+        "modelled.",
         "Dosage, purity and throughput are inputs; MetallurgyPy suggests no dosage.",
     )
 

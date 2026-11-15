@@ -31,7 +31,9 @@ register(
         model_id=MassBalance.MODEL_ID,
         module_key="mass_balance",
         title="Metal balance from recovery",
-        description="Contained, recovered and remaining metal from a feed mass, its grade and a recovery.",
+        description=(
+            "Contained, recovered and remaining metal from a feed mass, its grade and a recovery."
+        ),
         model_version=MassBalance.MODEL_VERSION,
         parameters=(
             _FEED_MASS,
@@ -59,7 +61,9 @@ register(
         model_id=TwoProductBalance.MODEL_ID,
         module_key="mass_balance",
         title="Two-product balance from grades",
-        description="Concentrate and tailings masses, mass yield and recovery from the three grades.",
+        description=(
+            "Concentrate and tailings masses, mass yield and recovery from the three grades."
+        ),
         model_version=TwoProductBalance.MODEL_VERSION,
         parameters=(
             _FEED_MASS,

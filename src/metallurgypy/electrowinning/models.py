@@ -26,9 +26,12 @@ class Electrowinning(BaseModel):
         "e = E / m_actual",
     )
     ASSUMPTIONS = (
-        "One electrode reaction with a fixed number of electrons n per deposited species; side reactions enter only through the current efficiency eta.",
-        "Current, current efficiency and cell voltage are constant over the period; the cell voltage is an input, not predicted.",
-        "Theoretical and actual production are reported separately: the actual one is only as good as the efficiency supplied.",
+        "One electrode reaction with a fixed number of electrons n per deposited species; side "
+        "reactions enter only through the current efficiency eta.",
+        "Current, current efficiency and cell voltage are constant over the period; the cell voltage "
+        "is an input, not predicted.",
+        "Theoretical and actual production are reported separately: the actual one is only as good "
+        "as the efficiency supplied.",
         "Deposit quality, short circuits and process upsets are not modelled.",
         "Faraday constant F = N_A * e, exact in the 2019 SI definition.",
     )

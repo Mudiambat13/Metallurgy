@@ -10,7 +10,9 @@ register_class(
     ConstantPressureFiltration,
     module_key="filtration",
     title="Constant-pressure cake filtration",
-    description="Time and rate to filter a volume through an incompressible cake at constant pressure.",
+    description=(
+        "Time and rate to filter a volume through an incompressible cake at constant pressure."
+    ),
     parameters=(
         param("viscosity", "Filtrate viscosity", "Dynamic viscosity of the filtrate.", "mPa.s"),
         param(

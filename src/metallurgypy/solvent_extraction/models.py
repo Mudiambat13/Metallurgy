@@ -45,8 +45,10 @@ class SingleStageExtraction(BaseModel):
     )
     ASSUMPTIONS = (
         _LINEAR_ASSUMPTION,
-        "Organic enters free of the metal; the stage reaches equilibrium; phases are immiscible and volumes unchanged.",
-        "D is for the stated chemical system, pH, temperature and extractant, and comes from the user.",
+        "Organic enters free of the metal; the stage reaches equilibrium; phases are immiscible "
+        "and volumes unchanged.",
+        "D is for the stated chemical system, pH, temperature and extractant, and comes from the "
+        "user.",
     )
 
     def __init__(
@@ -94,7 +96,9 @@ class SingleStageExtraction(BaseModel):
 
 
 class StrippingStage(BaseModel):
-    """One equilibrium stripping stage with a constant (organic/aqueous) distribution coefficient."""
+    """One equilibrium stripping stage with a constant (organic/aqueous) distribution
+    coefficient.
+    """
 
     MODEL_ID = "solvent_extraction.stripping_single_stage"
     EQUATIONS = (
@@ -105,7 +109,8 @@ class StrippingStage(BaseModel):
     )
     ASSUMPTIONS = (
         _LINEAR_ASSUMPTION.replace("extraction", "stripping"),
-        "D_s = C_org / C_aq measured under STRIPPING conditions (typically much lower than in extraction).",
+        "D_s = C_org / C_aq measured under STRIPPING conditions (typically much lower than in "
+        "extraction).",
         "Phases immiscible, volumes unchanged, equilibrium reached.",
     )
 
@@ -188,8 +193,10 @@ class CountercurrentExtraction(BaseModel):
     )
     ASSUMPTIONS = (
         _LINEAR_ASSUMPTION,
-        "N equilibrium (theoretical) stages in counter-current; the organic enters free of the metal.",
-        "Mixer-settler efficiency is not applied: real stage efficiency is below 100 % and must be handled by the user.",
+        "N equilibrium (theoretical) stages in counter-current; the organic enters free of the "
+        "metal.",
+        "Mixer-settler efficiency is not applied: real stage efficiency is below 100 % and must "
+        "be handled by the user.",
     )
 
     def __init__(
@@ -230,7 +237,8 @@ class CountercurrentExtraction(BaseModel):
         warnings = []
         if e < 1.0:
             warnings.append(
-                f"Extraction factor {e!r} < 1: even with infinite stages at most {1.0 - e:.6g} of the metal can be extracted."
+                f"Extraction factor {e!r} < 1: even with infinite stages at most "
+                f"{1.0 - e:.6g} of the metal can be extracted."
             )
         return self._result(
             [
@@ -259,7 +267,8 @@ class StagesRequired(BaseModel):
     )
     ASSUMPTIONS = (
         _LINEAR_ASSUMPTION,
-        "N is the continuous number of theoretical stages; the practical (integer) count is its ceiling, before stage efficiency.",
+        "N is the continuous number of theoretical stages; the practical (integer) count is its "
+        "ceiling, before stage efficiency.",
     )
 
     def __init__(
@@ -294,7 +303,8 @@ class StagesRequired(BaseModel):
         else:
             if e < 1.0 and phi <= 1.0 - e:
                 raise ModelDomainError(
-                    f"Unreachable target: with E = {e!r} < 1 the extraction cannot exceed {1.0 - e:.6g} "
+                    f"Unreachable target: with E = {e!r} < 1 the extraction cannot exceed "
+                    f"{1.0 - e:.6g} "
                     "whatever the number of stages. Raise D or the O/A ratio."
                 )
             n = math.log(1.0 + (e - 1.0) / phi) / math.log(e) - 1.0
@@ -369,7 +379,8 @@ class McCabeThieleAnalysis:
         ys, xs = self._y, self._x
         if y < ys[0] or y > ys[-1]:
             raise ModelDomainError(
-                f"Organic concentration {y!r} is outside the isotherm data [{ys[0]!r}, {ys[-1]!r}]: "
+                f"Organic concentration {y!r} is outside the isotherm data "
+                f"[{ys[0]!r}, {ys[-1]!r}]: "
                 "extrapolation is refused. Extend the isotherm data."
             )
         for j in range(1, len(ys)):
@@ -386,7 +397,8 @@ class McCabeThieleAnalysis:
             x_out = self._x_at_equilibrium(y)
             if x_out >= x_in - 1e-15:
                 raise ConvergenceError(
-                    f"Stage {n} does not lower the aqueous concentration (pinch): the target raffinate "
+                    f"Stage {n} does not lower the aqueous concentration (pinch): the target "
+                    "raffinate "
                     "is unreachable at this A/O ratio. Increase O (lower A/O)."
                 )
             points.append((x_out, y))
