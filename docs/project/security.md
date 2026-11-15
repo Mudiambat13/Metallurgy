@@ -27,7 +27,7 @@ MetallurgyPy is a local library and desktop application. It opens no network con
 - **Large inputs.** CSV and JSON files are read fully into memory. There is no size limit.
 - **Dependencies.** The Core has none. Optional extras (Matplotlib, PySide6, pyqtgraph, openpyxl) bring their own risk; keep them updated. No dependency scan (for example `pip-audit`) was run for this review.
 - **Studio.** The GUI was never run in the environment where this code was written (no PySide6, no display). Its behaviour is checked by the CI job, not here.
-- **Supply chain / release.** Nothing is published to PyPI. A future release needs a trusted-publisher setup and signed tags; that is not configured.
+- **Supply chain / release.** Nothing is published to PyPI. `.github/workflows/publish.yml` builds and checks distributions for a GitHub release, then publishes them with PyPI Trusted Publishing (OIDC). Before the first release, configure the PyPI trusted publisher for owner `Mudiambat13`, repository `MetallurgyPy`, workflow `publish.yml` and GitHub environment `pypi`. The release tag must be `v` plus the version in `src/metallurgypy/version.py`. Releases still require explicit maintainer approval.
 - **Not reviewed:** Qt and PySide6 themselves, the operating system's file dialogs, and the GitHub Actions configuration beyond reading it.
 
 ## Reporting a problem

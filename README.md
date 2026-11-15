@@ -4,7 +4,7 @@
 
 Open-source scientific library for metallurgical process calculations (**MetallurgyPy Core**) and a desktop application for visualization and reporting (**MetallurgyPy Studio**).
 
-> **Status: development release (0.2.0.dev0).** Core, 21 process models, uncertainty propagation, data import, scenario comparison, HTML/PDF reports, projects and Studio are implemented and tested. The models are simplified and **not validated against experimental or plant data**, and Studio has not been run on a real display by the author of the code (see the [scientific audit](https://mudiambat13.github.io/MetallurgyPy/project/scientific_audit/)). Nothing is published on PyPI.
+> **Status: development release (0.2.0.dev0).** Core, 21 process models, uncertainty propagation, data import, scenario comparison, HTML/PDF reports, projects and Studio are implemented and tested. The models are simplified and **not validated against experimental or plant data**, and Studio has not been run on a real display by the author of the code (see the [scientific audit](https://mudiambat13.github.io/MetallurgyPy/project/scientific_audit/)). Nothing is published on PyPI yet; see [installation](docs/installation.md) for the current install options.
 
 📖 **Documentation:** https://mudiambat13.github.io/MetallurgyPy/
 
@@ -14,13 +14,17 @@ Mass balance, hydrometallurgy, solvent extraction, electrowinning, flotation, fi
 
 MetallurgyPy is not a validated industrial simulator and does not replace DCS/PLC/SCADA systems.
 
-## Install (from a clone, until a release is approved)
+## Install
+
+Until the first approved PyPI release, install from a clone:
 
 ```bash
 pip install -e .                # Core, no GUI dependency
 pip install -e ".[gui]"         # Core + Studio
 metallurgypy-studio             # launch Studio
 ```
+
+After a release is published, install from PyPI with `pip install metallurgypy` (or `pip install "metallurgypy[gui]"` for Studio).
 
 ```python
 from metallurgypy.core import Quantity
